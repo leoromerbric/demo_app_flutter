@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class User {
   final String username;
   final String name;
@@ -48,11 +50,4 @@ class Transaction {
   });
 }
 
-enum TransactionType { 
-  payment, 
-  transfer, 
-  topup, 
-  refund 
-}
-
-import 'package:flutter/material.dart';
+enum TransactionType { payment, transfer, topup, refund }

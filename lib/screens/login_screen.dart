@@ -4,7 +4,7 @@ import 'home_selector_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback onThemeToggle;
-  
+
   const LoginScreen({super.key, required this.onThemeToggle});
 
   @override
@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -33,13 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
         actions: [
           IconButton(
             icon: Icon(
-              theme.brightness == Brightness.light 
-                  ? Icons.dark_mode 
+              theme.brightness == Brightness.light
+                  ? Icons.dark_mode
                   : Icons.light_mode,
             ),
             onPressed: widget.onThemeToggle,
             tooltip: 'Cambiar tema',
-            semanticsLabel: 'Cambiar entre tema claro y oscuro',
           ),
         ],
       ),
@@ -102,14 +101,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                        _obscurePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
                       onPressed: () {
                         setState(() {
                           _obscurePassword = !_obscurePassword;
                         });
                       },
-                      tooltip: _obscurePassword ? 'Mostrar contraseña' : 'Ocultar contraseña',
+                      tooltip: _obscurePassword
+                          ? 'Mostrar contraseña'
+                          : 'Ocultar contraseña',
                     ),
                   ),
                   validator: (value) {
@@ -219,9 +222,8 @@ class _LoginScreenState extends State<LoginScreen> {
       if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => HomeSelectorScreen(
-              onThemeToggle: widget.onThemeToggle,
-            ),
+            builder: (context) =>
+                HomeSelectorScreen(onThemeToggle: widget.onThemeToggle),
           ),
         );
       }

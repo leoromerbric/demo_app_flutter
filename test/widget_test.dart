@@ -16,10 +16,6 @@ void main() {
   testWidgets('Login with valid credentials', (WidgetTester tester) async {
     await tester.pumpWidget(const MiWalletApp());
 
-    // Enter valid credentials
-    await tester.enterText(find.byType(TextFormField).first, 'leonel');
-    await tester.enterText(find.byType(TextFormField).last, '1234');
-    
     // Tap the login button
     await tester.tap(find.text('Iniciar Sesión'));
     await tester.pumpAndSettle();

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
 import '../../services/wallet_service.dart';
-import '../../models/models.dart';
 import '../../widgets/transaction_widgets/transaction_list.dart';
 import '../login_screen.dart';
 
 class HomeStyle2 extends StatefulWidget {
   final VoidCallback onThemeToggle;
-  
+
   const HomeStyle2({super.key, required this.onThemeToggle});
 
   @override
@@ -24,26 +23,24 @@ class _HomeStyle2State extends State<HomeStyle2> {
     final user = AuthService.currentUser!;
     final cards = WalletService.getCards();
     final transactions = WalletService.getRecentTransactions();
-    
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mi Wallet - Accesible'),
         actions: [
           IconButton(
             icon: Icon(
-              theme.brightness == Brightness.light 
-                  ? Icons.dark_mode 
+              theme.brightness == Brightness.light
+                  ? Icons.dark_mode
                   : Icons.light_mode,
             ),
             onPressed: widget.onThemeToggle,
             tooltip: 'Cambiar tema',
-            semanticsLabel: 'Cambiar entre tema claro y oscuro',
           ),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () => _logout(context),
             tooltip: 'Cerrar sesión',
-            semanticsLabel: 'Cerrar sesión de la aplicación',
           ),
         ],
       ),
@@ -59,10 +56,7 @@ class _HomeStyle2State extends State<HomeStyle2> {
                 decoration: BoxDecoration(
                   color: colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: colorScheme.outline,
-                    width: 2,
-                  ),
+                  border: Border.all(color: colorScheme.outline, width: 2),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +94,8 @@ class _HomeStyle2State extends State<HomeStyle2> {
                                 fontWeight: FontWeight.bold,
                                 color: colorScheme.onPrimaryContainer,
                               ),
-                              semanticsLabel: 'Saldo total: ${WalletService.formatCurrency(user.balance)} pesos',
+                              semanticsLabel:
+                                  'Saldo total: ${WalletService.formatCurrency(user.balance)} pesos',
                             ),
                           ],
                         ),
@@ -110,9 +105,9 @@ class _HomeStyle2State extends State<HomeStyle2> {
                 ),
               ),
             ),
-            
+
             const SizedBox(height: 32),
-            
+
             // Card selection with high contrast
             Semantics(
               label: 'Selección de tarjetas',
@@ -130,11 +125,12 @@ class _HomeStyle2State extends State<HomeStyle2> {
                     final index = entry.key;
                     final card = entry.value;
                     final isSelected = _selectedCardIndex == index;
-                    
+
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: Semantics(
-                        label: 'Tarjeta ${card.name}, número ${card.number}, ${isSelected ? 'seleccionada' : 'no seleccionada'}',
+                        label:
+                            'Tarjeta ${card.name}, número ${card.number}, ${isSelected ? 'seleccionada' : 'no seleccionada'}',
                         button: true,
                         child: InkWell(
                           onTap: () {
@@ -143,7 +139,9 @@ class _HomeStyle2State extends State<HomeStyle2> {
                             });
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Tarjeta ${card.name} seleccionada'),
+                                content: Text(
+                                  'Tarjeta ${card.name} seleccionada',
+                                ),
                                 duration: const Duration(seconds: 1),
                               ),
                             );
@@ -152,13 +150,13 @@ class _HomeStyle2State extends State<HomeStyle2> {
                           child: Container(
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
-                              color: isSelected 
-                                  ? colorScheme.primaryContainer 
+                              color: isSelected
+                                  ? colorScheme.primaryContainer
                                   : colorScheme.surfaceVariant,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: isSelected 
-                                    ? colorScheme.primary 
+                                color: isSelected
+                                    ? colorScheme.primary
                                     : colorScheme.outline,
                                 width: isSelected ? 3 : 1,
                               ),
@@ -166,42 +164,54 @@ class _HomeStyle2State extends State<HomeStyle2> {
                             child: Row(
                               children: [
                                 Icon(
-                                  isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                                  color: isSelected 
-                                      ? colorScheme.primary 
+                                  isSelected
+                                      ? Icons.radio_button_checked
+                                      : Icons.radio_button_unchecked,
+                                  color: isSelected
+                                      ? colorScheme.primary
                                       : colorScheme.onSurfaceVariant,
                                   size: 32,
                                 ),
                                 const SizedBox(width: 16),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         card.name,
-                                        style: theme.textTheme.titleLarge?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: isSelected 
-                                              ? colorScheme.onPrimaryContainer 
-                                              : colorScheme.onSurfaceVariant,
-                                        ),
+                                        style: theme.textTheme.titleLarge
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              color: isSelected
+                                                  ? colorScheme
+                                                        .onPrimaryContainer
+                                                  : colorScheme
+                                                        .onSurfaceVariant,
+                                            ),
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
                                         card.number,
-                                        style: theme.textTheme.titleMedium?.copyWith(
-                                          color: isSelected 
-                                              ? colorScheme.onPrimaryContainer 
-                                              : colorScheme.onSurfaceVariant,
-                                        ),
+                                        style: theme.textTheme.titleMedium
+                                            ?.copyWith(
+                                              color: isSelected
+                                                  ? colorScheme
+                                                        .onPrimaryContainer
+                                                  : colorScheme
+                                                        .onSurfaceVariant,
+                                            ),
                                       ),
                                       Text(
                                         '${card.type} • Vence ${card.expiryDate}',
-                                        style: theme.textTheme.bodyLarge?.copyWith(
-                                          color: isSelected 
-                                              ? colorScheme.onPrimaryContainer 
-                                              : colorScheme.onSurfaceVariant,
-                                        ),
+                                        style: theme.textTheme.bodyLarge
+                                            ?.copyWith(
+                                              color: isSelected
+                                                  ? colorScheme
+                                                        .onPrimaryContainer
+                                                  : colorScheme
+                                                        .onSurfaceVariant,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -216,9 +226,9 @@ class _HomeStyle2State extends State<HomeStyle2> {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 32),
-            
+
             // Large action buttons
             Semantics(
               label: 'Acciones principales',
@@ -266,9 +276,9 @@ class _HomeStyle2State extends State<HomeStyle2> {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 32),
-            
+
             // Recent transactions with accessibility focus
             Semantics(
               label: 'Historial de transacciones recientes',
@@ -301,7 +311,7 @@ class _HomeStyle2State extends State<HomeStyle2> {
   }) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     return Semantics(
       label: '$label. $description',
       button: true,
@@ -314,10 +324,7 @@ class _HomeStyle2State extends State<HomeStyle2> {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: colorScheme.outline,
-                width: 1,
-              ),
+              border: Border.all(color: colorScheme.outline, width: 1),
             ),
             child: Row(
               children: [
@@ -392,7 +399,8 @@ class _HomeStyle2State extends State<HomeStyle2> {
               AuthService.logout();
               Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                  builder: (context) => LoginScreen(onThemeToggle: widget.onThemeToggle),
+                  builder: (context) =>
+                      LoginScreen(onThemeToggle: widget.onThemeToggle),
                 ),
                 (route) => false,
               );
