@@ -213,14 +213,12 @@ class _HomeStyle1State extends State<HomeStyle1> {
               ),
               const SizedBox(height: 16),
               TransactionList(transactions: transactions),
+              
+              // Add bottom padding to ensure content doesn't get cut off
+              const SizedBox(height: 80),
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _showComingSoon(context),
-        icon: const Icon(Icons.payment),
-        label: const Text('Pagar'),
       ),
     );
   }
