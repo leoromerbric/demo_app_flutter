@@ -43,14 +43,14 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Form(
             key: _formKey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                const SizedBox(height: 40),
                 Icon(
                   Icons.account_balance_wallet,
                   size: 80,
@@ -190,6 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 40),
               ],
             ),
           ),
