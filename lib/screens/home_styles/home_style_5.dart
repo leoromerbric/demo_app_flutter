@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import '../services/auth_service.dart';
-import '../services/wallet_service.dart';
-import '../models/models.dart';
-import '../widgets/cards/wallet_card_widget.dart';
-import '../widgets/transaction_widgets/transaction_list.dart';
-import 'login_screen.dart';
-import 'home_selector_screen.dart';
+import '../../services/auth_service.dart';
+import '../../services/wallet_service.dart';
+import '../../models/models.dart';
+import '../../widgets/cards/wallet_card_widget.dart';
+import '../../widgets/transaction_widgets/transaction_list.dart';
+import '../login_screen.dart';
+import '../home_selector_screen.dart';
 
-class MainHomeScreen extends StatefulWidget {
+class HomeStyle5 extends StatefulWidget {
   final VoidCallback onThemeToggle;
   
-  const MainHomeScreen({super.key, required this.onThemeToggle});
+  const HomeStyle5({super.key, required this.onThemeToggle});
 
   @override
-  State<MainHomeScreen> createState() => _MainHomeScreenState();
+  State<HomeStyle5> createState() => _HomeStyle5State();
 }
 
-class _MainHomeScreenState extends State<MainHomeScreen> {
+class _HomeStyle5State extends State<HomeStyle5> {
   int _currentIndex = 0;
   final PageController _pageController = PageController();
 
@@ -27,7 +27,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mi Wallet'),
+        title: const Text('Mi Wallet - Barra de Navegación'),
         actions: [
           IconButton(
             icon: Icon(

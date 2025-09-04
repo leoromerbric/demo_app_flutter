@@ -5,6 +5,7 @@ import 'home_styles/home_style_1.dart';
 import 'home_styles/home_style_2.dart';
 import 'home_styles/home_style_3.dart';
 import 'home_styles/home_style_4.dart';
+import 'home_styles/home_style_5.dart';
 
 class HomeSelectorScreen extends StatelessWidget {
   final VoidCallback onThemeToggle;
@@ -66,6 +67,7 @@ class HomeSelectorScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
+                  childAspectRatio: 0.85,
                   children: [
                     _buildStyleCard(
                       context,
@@ -98,6 +100,14 @@ class HomeSelectorScreen extends StatelessWidget {
                       icon: Icons.format_size,
                       color: const Color(0xFFD32F2F),
                       onTap: () => _navigateToStyle(context, 4),
+                    ),
+                    _buildStyleCard(
+                      context,
+                      title: 'Estilo Barra de Navegación',
+                      description: 'Interfaz con navegación por pestañas',
+                      icon: Icons.tab,
+                      color: const Color(0xFFFF7043),
+                      onTap: () => _navigateToStyle(context, 5),
                     ),
                   ],
                 ),
@@ -192,6 +202,9 @@ class HomeSelectorScreen extends StatelessWidget {
         break;
       case 4:
         destination = HomeStyle4(onThemeToggle: onThemeToggle);
+        break;
+      case 5:
+        destination = HomeStyle5(onThemeToggle: onThemeToggle);
         break;
       default:
         return;
