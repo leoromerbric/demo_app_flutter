@@ -100,7 +100,7 @@ class _HomeStyle4State extends State<HomeStyle4> {
     final cards = WalletService.getCards();
     
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -212,6 +212,9 @@ class _HomeStyle4State extends State<HomeStyle4> {
                 ],
               ),
             ),
+            
+            // Add bottom padding to ensure content is not cut off
+            const SizedBox(height: 40),
           ],
         ),
       ),

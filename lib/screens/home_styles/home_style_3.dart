@@ -83,7 +83,7 @@ class _HomeStyle3State extends State<HomeStyle3> with TickerProviderStateMixin {
     final colorScheme = theme.colorScheme;
     
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,32 +103,34 @@ class _HomeStyle3State extends State<HomeStyle3> with TickerProviderStateMixin {
                   ),
                 ),
                 const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '¡Hola, ${user.name}!',
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '¡Hola, ${user.name}!',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'Bienvenido de vuelta',
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
+                      Text(
+                        'Bienvenido de vuelta',
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
             
             const SizedBox(height: 24),
             
-            // Balance card
+            // Balance card - made more compact
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -138,12 +140,12 @@ class _HomeStyle3State extends State<HomeStyle3> with TickerProviderStateMixin {
                     colorScheme.primary.withOpacity(0.8),
                   ],
                 ),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
                     color: colorScheme.primary.withOpacity(0.3),
-                    blurRadius: 20,
-                    offset: const Offset(0, 8),
+                    blurRadius: 15,
+                    offset: const Offset(0, 6),
                   ),
                 ],
               ),
@@ -156,10 +158,10 @@ class _HomeStyle3State extends State<HomeStyle3> with TickerProviderStateMixin {
                       color: Colors.white.withOpacity(0.9),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4),
                   Text(
                     WalletService.formatCurrency(user.balance),
-                    style: theme.textTheme.displayMedium?.copyWith(
+                    style: theme.textTheme.displaySmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -170,9 +172,11 @@ class _HomeStyle3State extends State<HomeStyle3> with TickerProviderStateMixin {
             
             const SizedBox(height: 24),
             
-            // Action grid
-            Expanded(
+            // Action grid - fixed height to prevent overflow
+            SizedBox(
+              height: 280,
               child: GridView.count(
+                physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
@@ -204,20 +208,6 @@ class _HomeStyle3State extends State<HomeStyle3> with TickerProviderStateMixin {
                     label: 'Pagar',
                     color: Colors.orange,
                     onTap: () => _showComingSoon(context, 'Realizar pago'),
-                  ),
-                  _buildActionCard(
-                    context,
-                    icon: Icons.swap_horiz,
-                    label: 'Transferir',
-                    color: Colors.teal,
-                    onTap: () => _showComingSoon(context, 'Transferir'),
-                  ),
-                  _buildActionCard(
-                    context,
-                    icon: Icons.settings,
-                    label: 'Configurar',
-                    color: Colors.grey,
-                    onTap: () => _showComingSoon(context, 'Configuración'),
                   ),
                 ],
               ),

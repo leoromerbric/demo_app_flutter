@@ -16,11 +16,19 @@ void main() {
   testWidgets('Login with valid credentials', (WidgetTester tester) async {
     await tester.pumpWidget(const MiWalletApp());
 
+    // Enter valid credentials
+    await tester.enterText(find.byType(TextFormField).first, 'leonel');
+    await tester.enterText(find.byType(TextFormField).last, '1234');
+    
     // Tap the login button
     await tester.tap(find.text('Iniciar Sesión'));
     await tester.pumpAndSettle();
 
-    // Verify navigation to home selector
-    expect(find.text('Seleccionar Estilo'), findsOneWidget);
+    // Verify navigation to main home screen
+    expect(find.text('Mi Wallet'), findsOneWidget);
+    expect(find.text('Inicio'), findsOneWidget);
+    expect(find.text('Tarjetas'), findsOneWidget);
+    expect(find.text('Actividad'), findsOneWidget);
+    expect(find.text('Perfil'), findsOneWidget);
   });
 }
