@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mi_wallet/main.dart';
 
@@ -11,6 +12,32 @@ void main() {
     expect(find.text('¡Bienvenido!'), findsOneWidget);
     expect(find.text('Usuario'), findsOneWidget);
     expect(find.text('Contraseña'), findsOneWidget);
+  });
+
+  testWidgets('Login screen should be scrollable to prevent overflow', (WidgetTester tester) async {
+    // Set a smaller screen size to simulate overflow conditions
+    await tester.binding.setSurfaceSize(const Size(400, 600));
+    await tester.pumpWidget(const MiWalletApp());
+
+    // Verify that SingleChildScrollView is present (no overflow)
+    expect(find.byType(SingleChildScrollView), findsOneWidget);
+    
+    // Verify all login elements are still findable (content is accessible)
+    expect(find.text('¡Bienvenido!'), findsOneWidget);
+    expect(find.text('Usuario'), findsOneWidget);
+    expect(find.text('Contraseña'), findsOneWidget);
+    expect(find.text('Iniciar Sesión'), findsOneWidget);
+    expect(find.text('Credenciales de prueba:'), findsOneWidget);
+
+    // Simulate scrolling to verify scrollability
+    await tester.scrollUntilVisible(
+      find.text('Credenciales de prueba:'),
+      500.0,
+    );
+    expect(find.text('Credenciales de prueba:'), findsOneWidget);
+    
+    // Reset surface size
+    await tester.binding.setSurfaceSize(null);
   });
 
   testWidgets('Login with valid credentials', (WidgetTester tester) async {
