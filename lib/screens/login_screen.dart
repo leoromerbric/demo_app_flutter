@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
-import 'main_home_screen.dart';
+import 'home_selector_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback onThemeToggle;
@@ -224,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) =>
-                MainHomeScreen(onThemeToggle: widget.onThemeToggle),
+                HomeSelectorScreen(onThemeToggle: widget.onThemeToggle),
           ),
         );
       }
