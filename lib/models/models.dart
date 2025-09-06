@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Export production models
+export 'production_models.dart';
+
 class User {
   final String username;
   final String name;
