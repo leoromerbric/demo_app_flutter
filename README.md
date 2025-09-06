@@ -1,9 +1,10 @@
-# Mi Wallet - Flutter Demo App
+# Mi Wallet & Production Management - Flutter Demo App
 
-Una aplicación de cartera digital desarrollada en Flutter con múltiples estilos de interfaz de usuario y enfoque en accesibilidad.
+Una aplicación Flutter que incluye funcionalidades de cartera digital y gestión de producción con múltiples estilos de interfaz de usuario y enfoque en accesibilidad.
 
 ## Características
 
+### Cartera Digital
 - 🔐 Sistema de autenticación con credenciales de prueba
 - 🎨 4 estilos diferentes de interfaz de usuario
 - 🌙 Soporte para tema claro y oscuro
@@ -11,10 +12,51 @@ Una aplicación de cartera digital desarrollada en Flutter con múltiples estilo
 - 💳 Gestión de tarjetas y transacciones
 - 📱 Material Design 3
 
+### Gestión de Producción
+- 🏭 Gestión de órdenes de trabajo
+- ⚙️ Confirmación de operaciones
+- 📦 Movimientos de materiales (egreso/devolución/recepción)
+- 📊 Control de actividades y tarifas
+- 🔍 Filtros avanzados de búsqueda
+- ✅ Validaciones en línea
+
 ## Credenciales de Prueba
 
 - **Usuario:** `leonel`
 - **Contraseña:** `1234`
+
+## Funcionalidades de Producción
+
+### Flujo de 4 Pantallas
+
+1. **Bandeja/Filtro**: Filtrado y listado de órdenes de trabajo
+   - Filtros por pedido cliente, centro/planta, puesto de trabajo, fechas, estado
+   - Lista de órdenes con información detallada y progreso
+
+2. **Operaciones**: Lista de operaciones de una orden de trabajo
+   - Información detallada de cada operación
+   - Estado y progreso de confirmación
+   - Navegación a confirmación
+
+3. **Confirmación + Actividades**: Confirmación de operación con actividades
+   - Captura de cantidades (buenas, rechazo, reproceso)
+   - Gestión de actividades (MOD, indirectos, energía, depreciación)
+   - Cálculo automático de costos
+
+4. **Componentes**: Gestión de materiales y componentes
+   - Lista de materiales sugeridos por BOM
+   - Agregar/quitar materiales
+   - Búsqueda por código/descripción
+   - Selección de lotes y unidades de medida
+   - Tipos de movimiento (consumo, devolución, recepción)
+
+### Características Técnicas
+- Valores por defecto configurables
+- Validaciones de stock y lotes
+- Interfaz optimizada para móvil
+- Navegación tipo cards
+- Búsquedas asistidas
+- Totales fijos al pie
 
 ## Estilos de Interfaz
 

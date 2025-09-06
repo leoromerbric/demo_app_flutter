@@ -6,6 +6,7 @@ import 'home_styles/home_style_2.dart';
 import 'home_styles/home_style_3.dart';
 import 'home_styles/home_style_4.dart';
 import 'home_styles/home_style_5.dart';
+import 'production/work_order_list_screen.dart';
 
 class HomeSelectorScreen extends StatelessWidget {
   final VoidCallback onThemeToggle;
@@ -56,7 +57,7 @@ class HomeSelectorScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Selecciona el estilo de interfaz que prefieras para tu cartera:',
+                'Selecciona la funcionalidad que deseas usar:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
@@ -69,6 +70,14 @@ class HomeSelectorScreen extends StatelessWidget {
                   mainAxisSpacing: 16,
                   childAspectRatio: 0.85,
                   children: [
+                    _buildStyleCard(
+                      context,
+                      title: 'Gestión de Producción',
+                      description: 'Sistema de gestión de órdenes de trabajo y producción',
+                      icon: Icons.precision_manufacturing,
+                      color: const Color(0xFF2E7D32),
+                      onTap: () => _navigateToProduction(context),
+                    ),
                     _buildStyleCard(
                       context,
                       title: 'Estilo Clásico',
@@ -212,6 +221,14 @@ class HomeSelectorScreen extends StatelessWidget {
     
     Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => destination),
+    );
+  }
+
+  void _navigateToProduction(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => WorkOrderListScreen(onThemeToggle: onThemeToggle),
+      ),
     );
   }
 
